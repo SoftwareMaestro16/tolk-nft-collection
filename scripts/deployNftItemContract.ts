@@ -1,5 +1,5 @@
 import { Cell, toNano } from '@ton/core';
-import { NFTItem } from '../wrappers/NftItemContract';
+import { NFTItem } from '../wrappers/NFTItem';
 import { compile, NetworkProvider } from '@ton/blueprint';
 
 export async function run(provider: NetworkProvider) {

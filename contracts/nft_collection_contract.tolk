@@ -28,14 +28,8 @@ fun onInternalMessage(in: InMessage) {
         DeployNft => {
             var storage = lazy NftCollectionStorage.load();
             assert (in.senderAddress == storage.adminAddress) throw ERROR_NOT_FROM_ADMIN;
-            assert (msg.itemIndex <= storage.nextItemIndex) throw ERROR_INVALID_ITEM_INDEX;
 
-            var isLast = msg.itemIndex == storage.nextItemIndex;
             deployNftItem(msg.itemIndex, storage.nftItemCode, msg.attachTonAmount, msg.initParams);
-            if (isLast) {
-                storage.nextItemIndex += 1;
-                storage.save();
-            }
         }
 
         RequestRoyaltyParams => {
@@ -64,17 +58,14 @@ fun onInternalMessage(in: InMessage) {
                     storage.save();
                     return;
                 }
-                itemIndex = itemIndex!;     // tell the compiler that it's not-null (because found)
+
+                itemIndex = itemIndex!;
 
                 counter += 1;
-                assert (counter < 250) throw ERROR_BATCH_LIMIT_EXCEEDED;   // due to limits of action list size
+                assert (counter < 250) throw ERROR_BATCH_LIMIT_EXCEEDED;
 
-                assert (itemIndex <= storage.nextItemIndex) throw ERROR_NOT_FROM_ADMIN + counter;
                 val dictItem = BatchDeployDictItem.fromSlice(valueSlice!);
                 deployNftItem(itemIndex, storage.nftItemCode, dictItem.attachTonAmount, dictItem.initParams);
-                if (itemIndex == storage.nextItemIndex) {
-                    storage.nextItemIndex += 1;
-                }
             }
         }
 

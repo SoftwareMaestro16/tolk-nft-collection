@@ -1,5 +1,5 @@
 import { Address, beginCell, Cell, toNano } from '@ton/core';
-import { NFTCollection } from '../wrappers/NftCollectionContract';
+import { NFTCollection } from '../wrappers/NFTCollection';
 import { compile, NetworkProvider } from '@ton/blueprint';
 import { NFTMetadata } from '../utils/constants';
 
