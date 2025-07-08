@@ -44,13 +44,12 @@ export async function run(provider: NetworkProvider) {
 
     const nftCollectionContract = provider.open(NFTCollection.createFromAddress(Address.parse("kQCxqewMUskqoVFg9EjwTS3ZuNPw4Uh65uywefVOBktgVIBa")));
 
-    await nftCollectionContract.sendBatchDeployNFT(provider.sender(), 
-        
-            {
-                value: toNano("0.1"),
-                queryId: Math.floor(Date.now() / 1000),
-                items: items
-            }
+    await nftCollectionContract.sendBatchDeployNFT(provider.sender(),
+        {
+            value: toNano("0.1"),
+            queryId: Math.floor(Date.now() / 1000),
+            items: items
+        }
     );
 
     // run methods on `nftCollectionContract`
