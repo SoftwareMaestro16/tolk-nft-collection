@@ -12,7 +12,6 @@ export async function run(provider: NetworkProvider) {
 
     const usedIndexes = new Set();
 
-
     function getUniqueRand() {
         let num;
         do {
