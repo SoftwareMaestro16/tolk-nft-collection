@@ -133,7 +133,7 @@ export class NFTCollection implements Contract {
             deployList.set(
                 item.index,
                 beginCell()
-                    .storeCoins(10000000n)
+                    .storeCoins(toNano("0.05"))
                     .storeRef(
                         beginCell()
                             .storeAddress(item.to)
