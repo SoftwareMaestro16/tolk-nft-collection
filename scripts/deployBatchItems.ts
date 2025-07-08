@@ -49,7 +49,6 @@ export async function run(provider: NetworkProvider) {
             {
                 value: toNano("0.1"),
                 queryId: Math.floor(Date.now() / 1000),
-
                 items: items
             }
     );
